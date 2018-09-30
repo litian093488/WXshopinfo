@@ -1,0 +1,107 @@
+package com.legendman.mszn;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.legendman.dblib.DBLib;
+import com.legendman.entity.entity;
+
+
+/**
+ * Servlet implementation class saveWXinfo
+ */
+@WebServlet("/saveWXinfo")
+public class saveWXinfo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public saveWXinfo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+//		response.setContentType("text/html;charset=utf-8");
+		
+//		response.setHeader("Access-Control-Allow-Origin", "*");
+	
+//		response.setHeader("Access-Control-Allow-Methods", "GET,POST");
+		
+//		设置从微信传过来的编码为utf-8;
+		request.setCharacterEncoding("utf-8");
+		
+		String shopname=request.getParameter("shopname");
+		String qzpd=request.getParameter("qzpd");
+		String tastegood=request.getParameter("tastegood");
+		String provence=request.getParameter("provence");
+		String city=request.getParameter("city");
+		String address=request.getParameter("address");
+		String contact=request.getParameter("contact");
+		String introduce=request.getParameter("introduce");
+		String alipay=request.getParameter("alipay");
+		String ok_address=request.getParameter("ok_address");
+		String longitude=request.getParameter("longitude");
+		String latitude=request.getParameter("latitude");
+		String name=request.getParameter("name");
+		
+//		将获取到的数据存往数据库
+		try {
+			entity e=new entity();
+			e.setShopname(shopname);
+			e.setQzpd(qzpd);
+			e.setTastegood(tastegood);
+			e.setProvence(provence);
+			e.setCity(city);
+			e.setAddress(address);
+			e.setContact(contact);
+			e.setIntroduce(introduce);
+			e.setAlipay(alipay);
+			e.setOk_address(ok_address);
+			e.setLongitude(longitude);
+			e.setLatitude(latitude);
+			e.setGeneral_addr(name);
+			
+			DBLib db=new DBLib();
+			db.addData(e);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+//		System.out.println("店名:"+shopname );
+//		System.out.println("是否清真:"+qzpd);
+//		System.out.println("特色:"+tastegood);
+//		System.out.println("省:" + provence);
+//		System.out.println("市:" + city);
+//		System.out.println("手动地址:" + address);
+//		System.out.println("联系方式:" + contact);
+//		System.out.println("说明:" + introduce);
+//		System.out.println("支付宝:"+alipay);
+//		System.out.println("详细地址地址:"+ok_address);
+//		System.out.println("经度:"+longitude);
+//		System.out.println("纬度:"+latitude);
+//		System.out.println("大致位置:"+name);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
