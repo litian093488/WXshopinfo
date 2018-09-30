@@ -1,0 +1,82 @@
+<view id="all">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section">
+      <view class="section_title">店名：</view>
+      <input class="input-text" name="shopname" placeholder="请输入店名！"  value='{{form_info}}' />
+    </view>
+    <view class="section section_gap" >
+      <view class="section_title">是否清真：</view>
+      <radio-group name="qzpd">
+        <label><radio value="清真" />清真</label>   
+        <label><radio value="非清真" />非清真</label>
+      </radio-group>
+    </view>
+    <view class="section section_gap">
+      <view class="section_title">特色小吃：</view>
+        <input class="input-text" name="tastegood" placeholder='请输入店铺特色小吃' value='{{form_info}}' ></input>
+    </view>
+     <view class="section section_gap">
+      <view class="section_title">地址：</view>
+      <div>
+         <input class="input-text" id='provence' name="provence" placeholder='省' value='{{form_info}}' ></input>
+         <input class="input-text" id='city' name="city" placeholder='市' value='{{form_info}}' >
+         </input>
+         <input class="input-text" id='address' name="address" placeholder='请输入店铺详细地址'  value='{{form_info}}'></input>
+         </div>
+     </view>
+    <view class="section section_gap">
+      <view class="section_title">您的姓名or手机号：</view>
+        <input class="input-text" name="contact" placeholder='请输入您的姓名or手机号' value='{{form_info}}' ></input>
+    </view>
+    <view class="section section_gap">
+      <view class="section_title">其他说明：</view>
+        <input class="input-text" name="introduce" placeholder='例如:营业时间等' value='{{form_info}}' ></input>
+    </view>
+    <view class="section section_gap">
+      <view class="section_title">支付宝账号：</view>
+        <input class="input-text" name="alipay" placeholder='请输入您的支付宝账号' value='{{form_info}}' ></input>
+    </view>
+    <view class="btn-area">
+
+    <tr>
+      <td>
+         <div><button class="submit" formType="submit" align="left" float="left">
+        <image class="sub_background" src="../../img/submit.svg" ></image>提交</button></div>
+      </td>
+      <td>
+        <div><button class="reset" formType="reset" align="right">
+        <image class="res_background" src="../../img/reset.svg" ></image>重置</button></div>
+      </td>
+    </tr>
+    </view>
+  </form>
+    <text class="notice">需知：</text>
+   <div class="notice_main">
+    <p class="a"> 1.数据有偿提供，如确认可获得支付宝转账红包一个（金额不定）。</p>
+     <p class="a">2.地址越详细越好，e.g.：某街道与某街道交叉口东北角往东第几个门面，或者第几棵大树下。</p>
+     <p class="a">3.人员有限，确认时间长，请耐心等待。</p>
+     <p class="a">4.支付宝转账地址来自于：15909267625。</p>
+  </div>
+
+<!-- 底部当前位置展示 -->
+  <view>
+    <view class='add_info' name="lat" bindtap='select'
+      data-address='{{location.address}}'
+      data-longitude='{{location.longitude}}'
+      data-latitude='{{location.latitude}}'
+      data-name='{{location.name}}'
+    >选择位置后提交前，务必点击这里更新位置！
+    </view>
+ </view>
+   <!-- 具体位置展示获取 -->
+   <view class='info'   >
+    <text class='allinfo'>
+      经度：{{location.longitude}}
+      纬度：{{location.latitude}}
+      位置名称：{{location.name}}
+      详细地址：{{location.address}}
+    </text>
+  </view>
+<!-- 手动选取当前位置 -->
+  <button class='btn' bindtap='selectLocation'>选择位置</button>
+</view>
